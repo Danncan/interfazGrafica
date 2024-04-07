@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="InsertarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cliente" type="tns:Cliente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Cliente">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ClienteID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Apellido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefono" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaRegistro" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Activo" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Suscripciones" type="tns:ArrayOfSuscripcione" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSuscripcione">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Suscripcione" nillable="true" type="tns:Suscripcione" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Suscripcione">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SuscripcionID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClienteID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SedeID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicio" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoSuscripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Activo" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="tns:Cliente" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pagos" type="tns:ArrayOfPago" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sede" type="tns:Sede" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPago">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Pago" nillable="true" type="tns:Pago" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Pago">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PagoID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SuscripcionID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaPago" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Monto" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="MetodoPago" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Activo" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Suscripcione" type="tns:Suscripcione" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Sede">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SedeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreSede" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefono" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Activo" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Suscripciones" type="tns:ArrayOfSuscripcione" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertarClienteResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ObtenerClientePorId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clienteId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerClientePorIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerClientePorIdResult" type="tns:Cliente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cliente" type="tns:Cliente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizarClienteResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EliminarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clienteId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarClienteResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="InsertarPago">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pago" type="tns:Pago" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertarPagoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ObtenerPagoPorId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pagoId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerPagoPorIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerPagoPorIdResult" type="tns:Pago" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizarPago">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pago" type="tns:Pago" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizarPagoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EliminarPago">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pagoId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarPagoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="InsertarSede">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sede" type="tns:Sede" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertarSedeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ObtenerSedePorId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sedeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerSedePorIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerSedePorIdResult" type="tns:Sede" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizarSede">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sede" type="tns:Sede" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizarSedeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EliminarSede">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sedeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarSedeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="InsertarSuscripcion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="suscripcion" type="tns:Suscripcione" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertarSuscripcionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ObtenerSuscripcionPorId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="suscripcionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerSuscripcionPorIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerSuscripcionPorIdResult" type="tns:Suscripcione" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizarSuscripcion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="suscripcion" type="tns:Suscripcione" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizarSuscripcionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EliminarSuscripcion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="suscripcionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarSuscripcionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InsertarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertarCliente" />
+  </wsdl:message>
+  <wsdl:message name="InsertarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerClientePorIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerClientePorId" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerClientePorIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerClientePorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActualizarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:ActualizarCliente" />
+  </wsdl:message>
+  <wsdl:message name="ActualizarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:ActualizarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarCliente" />
+  </wsdl:message>
+  <wsdl:message name="EliminarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertarPagoSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertarPago" />
+  </wsdl:message>
+  <wsdl:message name="InsertarPagoSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertarPagoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerPagoPorIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerPagoPorId" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerPagoPorIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerPagoPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActualizarPagoSoapIn">
+    <wsdl:part name="parameters" element="tns:ActualizarPago" />
+  </wsdl:message>
+  <wsdl:message name="ActualizarPagoSoapOut">
+    <wsdl:part name="parameters" element="tns:ActualizarPagoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarPagoSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarPago" />
+  </wsdl:message>
+  <wsdl:message name="EliminarPagoSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarPagoResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertarSedeSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertarSede" />
+  </wsdl:message>
+  <wsdl:message name="InsertarSedeSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertarSedeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerSedePorIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerSedePorId" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerSedePorIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerSedePorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActualizarSedeSoapIn">
+    <wsdl:part name="parameters" element="tns:ActualizarSede" />
+  </wsdl:message>
+  <wsdl:message name="ActualizarSedeSoapOut">
+    <wsdl:part name="parameters" element="tns:ActualizarSedeResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarSedeSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarSede" />
+  </wsdl:message>
+  <wsdl:message name="EliminarSedeSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarSedeResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertarSuscripcionSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertarSuscripcion" />
+  </wsdl:message>
+  <wsdl:message name="InsertarSuscripcionSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertarSuscripcionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerSuscripcionPorIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerSuscripcionPorId" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerSuscripcionPorIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerSuscripcionPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActualizarSuscripcionSoapIn">
+    <wsdl:part name="parameters" element="tns:ActualizarSuscripcion" />
+  </wsdl:message>
+  <wsdl:message name="ActualizarSuscripcionSoapOut">
+    <wsdl:part name="parameters" element="tns:ActualizarSuscripcionResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarSuscripcionSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarSuscripcion" />
+  </wsdl:message>
+  <wsdl:message name="EliminarSuscripcionSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarSuscripcionResponse" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:portType name="APIGestionCRUDSoap">
+    <wsdl:operation name="InsertarCliente">
+      <wsdl:input message="tns:InsertarClienteSoapIn" />
+      <wsdl:output message="tns:InsertarClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerClientePorId">
+      <wsdl:input message="tns:ObtenerClientePorIdSoapIn" />
+      <wsdl:output message="tns:ObtenerClientePorIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarCliente">
+      <wsdl:input message="tns:ActualizarClienteSoapIn" />
+      <wsdl:output message="tns:ActualizarClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarCliente">
+      <wsdl:input message="tns:EliminarClienteSoapIn" />
+      <wsdl:output message="tns:EliminarClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarPago">
+      <wsdl:input message="tns:InsertarPagoSoapIn" />
+      <wsdl:output message="tns:InsertarPagoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPagoPorId">
+      <wsdl:input message="tns:ObtenerPagoPorIdSoapIn" />
+      <wsdl:output message="tns:ObtenerPagoPorIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarPago">
+      <wsdl:input message="tns:ActualizarPagoSoapIn" />
+      <wsdl:output message="tns:ActualizarPagoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarPago">
+      <wsdl:input message="tns:EliminarPagoSoapIn" />
+      <wsdl:output message="tns:EliminarPagoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSede">
+      <wsdl:input message="tns:InsertarSedeSoapIn" />
+      <wsdl:output message="tns:InsertarSedeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerSedePorId">
+      <wsdl:input message="tns:ObtenerSedePorIdSoapIn" />
+      <wsdl:output message="tns:ObtenerSedePorIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarSede">
+      <wsdl:input message="tns:ActualizarSedeSoapIn" />
+      <wsdl:output message="tns:ActualizarSedeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarSede">
+      <wsdl:input message="tns:EliminarSedeSoapIn" />
+      <wsdl:output message="tns:EliminarSedeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSuscripcion">
+      <wsdl:input message="tns:InsertarSuscripcionSoapIn" />
+      <wsdl:output message="tns:InsertarSuscripcionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerSuscripcionPorId">
+      <wsdl:input message="tns:ObtenerSuscripcionPorIdSoapIn" />
+      <wsdl:output message="tns:ObtenerSuscripcionPorIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarSuscripcion">
+      <wsdl:input message="tns:ActualizarSuscripcionSoapIn" />
+      <wsdl:output message="tns:ActualizarSuscripcionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarSuscripcion">
+      <wsdl:input message="tns:EliminarSuscripcionSoapIn" />
+      <wsdl:output message="tns:EliminarSuscripcionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="APIGestionCRUDSoap" type="tns:APIGestionCRUDSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertarCliente">
+      <soap:operation soapAction="http://tempuri.org/InsertarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerClientePorId">
+      <soap:operation soapAction="http://tempuri.org/ObtenerClientePorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarCliente">
+      <soap:operation soapAction="http://tempuri.org/ActualizarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarCliente">
+      <soap:operation soapAction="http://tempuri.org/EliminarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarPago">
+      <soap:operation soapAction="http://tempuri.org/InsertarPago" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPagoPorId">
+      <soap:operation soapAction="http://tempuri.org/ObtenerPagoPorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarPago">
+      <soap:operation soapAction="http://tempuri.org/ActualizarPago" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarPago">
+      <soap:operation soapAction="http://tempuri.org/EliminarPago" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSede">
+      <soap:operation soapAction="http://tempuri.org/InsertarSede" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerSedePorId">
+      <soap:operation soapAction="http://tempuri.org/ObtenerSedePorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarSede">
+      <soap:operation soapAction="http://tempuri.org/ActualizarSede" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarSede">
+      <soap:operation soapAction="http://tempuri.org/EliminarSede" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSuscripcion">
+      <soap:operation soapAction="http://tempuri.org/InsertarSuscripcion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerSuscripcionPorId">
+      <soap:operation soapAction="http://tempuri.org/ObtenerSuscripcionPorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarSuscripcion">
+      <soap:operation soapAction="http://tempuri.org/ActualizarSuscripcion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarSuscripcion">
+      <soap:operation soapAction="http://tempuri.org/EliminarSuscripcion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="APIGestionCRUDSoap12" type="tns:APIGestionCRUDSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertarCliente">
+      <soap12:operation soapAction="http://tempuri.org/InsertarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerClientePorId">
+      <soap12:operation soapAction="http://tempuri.org/ObtenerClientePorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarCliente">
+      <soap12:operation soapAction="http://tempuri.org/ActualizarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarCliente">
+      <soap12:operation soapAction="http://tempuri.org/EliminarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarPago">
+      <soap12:operation soapAction="http://tempuri.org/InsertarPago" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPagoPorId">
+      <soap12:operation soapAction="http://tempuri.org/ObtenerPagoPorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarPago">
+      <soap12:operation soapAction="http://tempuri.org/ActualizarPago" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarPago">
+      <soap12:operation soapAction="http://tempuri.org/EliminarPago" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSede">
+      <soap12:operation soapAction="http://tempuri.org/InsertarSede" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerSedePorId">
+      <soap12:operation soapAction="http://tempuri.org/ObtenerSedePorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarSede">
+      <soap12:operation soapAction="http://tempuri.org/ActualizarSede" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarSede">
+      <soap12:operation soapAction="http://tempuri.org/EliminarSede" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarSuscripcion">
+      <soap12:operation soapAction="http://tempuri.org/InsertarSuscripcion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerSuscripcionPorId">
+      <soap12:operation soapAction="http://tempuri.org/ObtenerSuscripcionPorId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarSuscripcion">
+      <soap12:operation soapAction="http://tempuri.org/ActualizarSuscripcion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarSuscripcion">
+      <soap12:operation soapAction="http://tempuri.org/EliminarSuscripcion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="APIGestionCRUD">
+    <wsdl:port name="APIGestionCRUDSoap" binding="tns:APIGestionCRUDSoap">
+      <soap:address location="http://localhost:9091/APIGestionCRUD.asmx" />
+    </wsdl:port>
+    <wsdl:port name="APIGestionCRUDSoap12" binding="tns:APIGestionCRUDSoap12">
+      <soap12:address location="http://localhost:9091/APIGestionCRUD.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="interfazGrafica.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="interfazGrafica_API_Crud_APIGestionCRUD" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:9091/APIGestionCRUD.asmx</Value>
+    </Setting>
+    <Setting Name="interfazGrafica_Api_Consultas_API_GestionConsultas" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:9095/API_GestionConsultas.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

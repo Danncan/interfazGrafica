@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ListarClientes">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListarClientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarClientesResult" type="tns:ArrayOfSP_ListClientes_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSP_ListClientes_Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SP_ListClientes_Result" nillable="true" type="tns:SP_ListClientes_Result" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SP_ListClientes_Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ClienteID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Apellido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefono" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaRegistro" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Activo" nillable="true" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListarPagos">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListarPagosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarPagosResult" type="tns:ArrayOfSP_ListPagos_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSP_ListPagos_Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SP_ListPagos_Result" nillable="true" type="tns:SP_ListPagos_Result" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SP_ListPagos_Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PagoID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SuscripcionID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaPago" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Monto" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="MetodoPago" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Activo" nillable="true" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListarSedes">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListarSedesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarSedesResult" type="tns:ArrayOfSP_ListSedes_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSP_ListSedes_Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SP_ListSedes_Result" nillable="true" type="tns:SP_ListSedes_Result" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SP_ListSedes_Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SedeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreSede" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefono" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Activo" nillable="true" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListarSuscripciones">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListarSuscripcionesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListarSuscripcionesResult" type="tns:ArrayOfSP_ListSuscripciones_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSP_ListSuscripciones_Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SP_ListSuscripciones_Result" nillable="true" type="tns:SP_ListSuscripciones_Result" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SP_ListSuscripciones_Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SuscripcionID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClienteID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SedeID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicio" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoSuscripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Activo" nillable="true" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="clientesConDeudas">
+        <s:complexType />
+      </s:element>
+      <s:element name="clientesConDeudasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="clientesConDeudasResult" type="tns:ArrayOfSP_ClientesConDeuda_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSP_ClientesConDeuda_Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SP_ClientesConDeuda_Result" nillable="true" type="tns:SP_ClientesConDeuda_Result" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SP_ClientesConDeuda_Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ClienteID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Apellido" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeudaTotal" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="sedesConMasSuscripciones">
+        <s:complexType />
+      </s:element>
+      <s:element name="sedesConMasSuscripcionesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sedesConMasSuscripcionesResult" type="tns:ArrayOfSP_SedeConMasSuscripcionesActivas_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSP_SedeConMasSuscripcionesActivas_Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SP_SedeConMasSuscripcionesActivas_Result" nillable="true" type="tns:SP_SedeConMasSuscripcionesActivas_Result" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SP_SedeConMasSuscripcionesActivas_Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="NombreSede" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalSuscripciones" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ListarClientesSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarClientes" />
+  </wsdl:message>
+  <wsdl:message name="ListarClientesSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarClientesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarPagosSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarPagos" />
+  </wsdl:message>
+  <wsdl:message name="ListarPagosSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarPagosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarSedesSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarSedes" />
+  </wsdl:message>
+  <wsdl:message name="ListarSedesSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarSedesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListarSuscripcionesSoapIn">
+    <wsdl:part name="parameters" element="tns:ListarSuscripciones" />
+  </wsdl:message>
+  <wsdl:message name="ListarSuscripcionesSoapOut">
+    <wsdl:part name="parameters" element="tns:ListarSuscripcionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="clientesConDeudasSoapIn">
+    <wsdl:part name="parameters" element="tns:clientesConDeudas" />
+  </wsdl:message>
+  <wsdl:message name="clientesConDeudasSoapOut">
+    <wsdl:part name="parameters" element="tns:clientesConDeudasResponse" />
+  </wsdl:message>
+  <wsdl:message name="sedesConMasSuscripcionesSoapIn">
+    <wsdl:part name="parameters" element="tns:sedesConMasSuscripciones" />
+  </wsdl:message>
+  <wsdl:message name="sedesConMasSuscripcionesSoapOut">
+    <wsdl:part name="parameters" element="tns:sedesConMasSuscripcionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:portType name="API_GestionConsultasSoap">
+    <wsdl:operation name="ListarClientes">
+      <wsdl:input message="tns:ListarClientesSoapIn" />
+      <wsdl:output message="tns:ListarClientesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarPagos">
+      <wsdl:input message="tns:ListarPagosSoapIn" />
+      <wsdl:output message="tns:ListarPagosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarSedes">
+      <wsdl:input message="tns:ListarSedesSoapIn" />
+      <wsdl:output message="tns:ListarSedesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarSuscripciones">
+      <wsdl:input message="tns:ListarSuscripcionesSoapIn" />
+      <wsdl:output message="tns:ListarSuscripcionesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="clientesConDeudas">
+      <wsdl:input message="tns:clientesConDeudasSoapIn" />
+      <wsdl:output message="tns:clientesConDeudasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sedesConMasSuscripciones">
+      <wsdl:input message="tns:sedesConMasSuscripcionesSoapIn" />
+      <wsdl:output message="tns:sedesConMasSuscripcionesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="API_GestionConsultasSoap" type="tns:API_GestionConsultasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListarClientes">
+      <soap:operation soapAction="http://tempuri.org/ListarClientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarPagos">
+      <soap:operation soapAction="http://tempuri.org/ListarPagos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSedes">
+      <soap:operation soapAction="http://tempuri.org/ListarSedes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSuscripciones">
+      <soap:operation soapAction="http://tempuri.org/ListarSuscripciones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clientesConDeudas">
+      <soap:operation soapAction="http://tempuri.org/clientesConDeudas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sedesConMasSuscripciones">
+      <soap:operation soapAction="http://tempuri.org/sedesConMasSuscripciones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="API_GestionConsultasSoap12" type="tns:API_GestionConsultasSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListarClientes">
+      <soap12:operation soapAction="http://tempuri.org/ListarClientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarPagos">
+      <soap12:operation soapAction="http://tempuri.org/ListarPagos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSedes">
+      <soap12:operation soapAction="http://tempuri.org/ListarSedes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarSuscripciones">
+      <soap12:operation soapAction="http://tempuri.org/ListarSuscripciones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clientesConDeudas">
+      <soap12:operation soapAction="http://tempuri.org/clientesConDeudas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sedesConMasSuscripciones">
+      <soap12:operation soapAction="http://tempuri.org/sedesConMasSuscripciones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="API_GestionConsultas">
+    <wsdl:port name="API_GestionConsultasSoap" binding="tns:API_GestionConsultasSoap">
+      <soap:address location="http://localhost:9095/API_GestionConsultas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="API_GestionConsultasSoap12" binding="tns:API_GestionConsultasSoap12">
+      <soap12:address location="http://localhost:9095/API_GestionConsultas.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
