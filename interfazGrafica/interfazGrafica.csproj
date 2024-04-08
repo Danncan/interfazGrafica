@@ -145,6 +145,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\SedesController.cs" />
+    <Compile Include="Controllers\SuscripcionesController.cs" />
+    <Compile Include="Controllers\PagosController.cs" />
     <Compile Include="Web References\Api_Consultas\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -173,6 +176,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Sources\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -216,6 +220,21 @@
     <Content Include="Views\Clientes\Details.cshtml" />
     <Content Include="Views\Clientes\Edit.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Sedes\Create.cshtml" />
+    <Content Include="Views\Sedes\Delete.cshtml" />
+    <Content Include="Views\Sedes\Details.cshtml" />
+    <Content Include="Views\Sedes\Edit.cshtml" />
+    <Content Include="Views\Sedes\Index.cshtml" />
+    <Content Include="Views\Suscripciones\Create.cshtml" />
+    <Content Include="Views\Suscripciones\Delete.cshtml" />
+    <Content Include="Views\Suscripciones\Details.cshtml" />
+    <Content Include="Views\Suscripciones\Edit.cshtml" />
+    <Content Include="Views\Suscripciones\Index.cshtml" />
+    <Content Include="Views\Pagos\Create.cshtml" />
+    <Content Include="Views\Pagos\Delete.cshtml" />
+    <Content Include="Views\Pagos\Details.cshtml" />
+    <Content Include="Views\Pagos\Edit.cshtml" />
+    <Content Include="Views\Pagos\Index.cshtml" />
     <None Include="Web References\Api_Consultas\API_GestionConsultas.wsdl" />
     <Content Include="Web References\Api_Consultas\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -260,6 +279,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\UIClientes\" />
+    <Folder Include="Views\UIPagos\" />
+    <Folder Include="Views\UISedes\" />
+    <Folder Include="Views\UISuscripciones\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -1,33 +1,172 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewData["Title"] = "Home Page";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>PhysioFitnes</title>
+    <link rel="icon" type="image/png" href="/img/favicon-16x16.png">
+
+</head>
+<body>
+
+    <!--Inicio-->
+    <section id="inicio" class="inicio">
+        <div class="contenido-seccion">
+            <div class="info">
+                <h2>HAZ QUE <span class="txtRojo">OCURRA</span></h2>
+                <p>Triunfar es más facil de lo que piensas!</p>
+                <a href="#nosotros" class="btn-mas">
+                    <i class="fa-solid fa-circle-chevron-down"></i>
+                </a>
+            </div>
+            <div class="opciones">
+                <div class="opcion">
+                    01.FITNESS
+                </div>
+                <div class="opcion">
+                    02.CROSSFIT
+                </div>
+                <div class="opcion">
+                    03.BOXING
+                </div>
+                <div class="opcion">
+                    04.SOJUKAI
+                </div>
+                <div class="opcion">
+                    05.FUNCIOINAL
+                </div>
+            </div>
+        </div>
+    </section>
+    <button type="button" class="btn btn-success">Prueba Bootstrap</button>
+
+    <!--NOSOTROS-->
+    <section class="nosotros" id="nosotros">
+        <div class="fila">
+            <div class="col">
+                <img src="img/nosotros.png" alt="">
+            </div>
+            <div class="col">
+                <div class="contenedor-titulo">
+                    <div class="numero">
+                        01
+                    </div>
+                    <div class="info">
+                        <span class="frase">LA MEJOR EXPERIENCIA</span>
+                        <h2>NOSOTROS</h2>
+                    </div>
+                </div>
+                <p class="p-especial">COMIENZA EL CAMBIO HOY</p>
+                <p>En PhysioFitnes, estamos comprometidos con tu bienestar físico y mental. Desde nuestra fundación en 2018, nos hemos dedicado a ayudar a personas como tú a alcanzar sus objetivos de salud y fitness de una manera amigable y accesible.</p>
+            </div>
+        </div>
+        <hr>
+        <div class="fila-nosotros">
+            <div class="col1">
+                <span class="frase">
+                    <span class="txtRojo">ENTRENA </span>DIFERENTE
+                </span>
+                <h2>PRUEBA  <span class="txtRojo">GRATIS </span></h2>
+            </div>
+            <div class="col2">
+                <button>PASE LIBRE</button>
+            </div>
+        </div>
     </section>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
-</main>
+    <!--Servicios-->
+    <section class="servicios" id="servicios">
+        <div class="contenido-seccion">
+            <div class="fila">
+                <div class="col">
+                    <div class="contenedor-titulo">
+                        <div class="numero">
+                            02
+                        </div>
+                        <div class="info">
+                            <span class="frase">LA MEJOR EXPERIENCIA</span>
+                            <h2>SERVICIOS</h2>
+                        </div>
+                    </div>
+                    <p class="p-especial">Descubre cómo podemos ayudarte a alcanzar tus metas.</p>
+                    <p>En PhysioFitnes, entendemos que cada persona tiene metas y necesidades de fitness únicas. Nuestros servicios están diseñados para brindar una experiencia integral y personalizada que se adapte a ti. Ya sea que estés buscando aumentar tu fuerza, mejorar tu resistencia cardiovascular, perder peso o simplemente mantenerte activo, tenemos un servicio que se ajusta a tus objetivos.</p>
+                </div>
+                <div class="col">
+                    <img src="img/servicios.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="info-servicios">
+            <table>
+                <tr>
+                    <td>
+                        <i class="fa-solid fa-person-walking"></i>
+                        <h3><span class="txtRojo">Clases </span> de Fitness</h3>
+                        <p> ¡Clases enfocadas a entrenamientos cardiovascular hasta fortalecimiento muscular!.</p>
+                    </td>
+                    <td>
+                        <i class="fa-solid fa-dumbbell"></i>
+                        <h3><span class="txtRojo">Clases </span> de Crossfit</h3>
+                        <p> Experimenta un entrenamiento de alta intensidad y supera tus límites físicos.</p>
+                    </td>
+                    <td>
+                        <i class="fa-solid fa-mitten"></i>
+                        <h3><span class="txtRojo">Clases </span> de Boxeo</h3>
+                        <p> Descubre la fuerza, la agilidad y la confianza mientras aprendes Boxeo .</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fa-solid fa-headphones-simple"></i>
+                        <h3><span class="txtRojo">Clases </span>Bailoterapia</h3>
+                        <p> Disfruta de la música, quema calorías y diviértete mientras mejoras tu salud.</p>
+                    </td>
+                    <td>
+                        <i class="fa-solid fa-heart-circle-bolt"></i>
+                        <h3><span class="txtRojo">Clases </span> de Sijukai</h3>
+                        <p>Sumérgete en una disciplina que combina la mente y el cuerpo.</p>
+                    </td>
+                    <td>
+                        <i class="fa-solid fa-bicycle"></i>
+                        <h3><span class="txtRojo">Clases </span> de Spining</h3>
+                        <p>Experimenta un entrenamiento de alta intensidad, mediante nuevas clases de Spining.</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contacto" id="contacto">
+        <div class="contenido-seccion">
+            <div class="fila">
+                <div class="col">
+                    <h2>Contacto</h2>
+                    <p>A continuación, encontrarás nuestros datos de contacto y nuestra ubicación:</p>
+                    <ul>
+                        <li><i class="fa-solid fa-envelope"></i> Correo Electrónico: contacto@physiofitnes.com</li>
+                        <li><i class="fa-solid fa-phone"></i> Teléfono: +593 456 7890</li>
+                        <li><i class="fa-solid fa-map-marker"></i> Dirección: Av. Miguel Riofrio , OE4B</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <!-- Aquí puedes agregar un mapa interactivo o un iframe de Google Maps con la ubicación -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15959.065336620208!2d-78.4880905!3d-0.2924863!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d599397248db33%3A0x789f699bd0e09589!2sGIMNASIO%20PHYSIOFITNESS!5e0!3m2!1ses!2sec!4v1694757973767!5m2!1ses!2sec"
+                            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</body>
+</html>

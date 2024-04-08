@@ -32,5 +32,37 @@ namespace interfazGrafica.Logica
 
             return listaClientes;
         }
+        public List<Models.Sedes> ListarSedes()
+        {
+            // Llamamos al método ListarSedes que devuelve una lista de SP_ListSedes_Result
+            var resultadosApi = gestorAPI.ListarSedes();
+
+            // Convertimos la lista de la API a la lista de modelos de la aplicación
+            var listaSedes = resultadosApi.Select(apiSede => new Models.Sedes
+            {
+                SedeID = apiSede.SedeID,
+                NombreSede = apiSede.NombreSede,
+                Direccion = apiSede.Direccion,
+                Telefono = apiSede.Telefono,
+                Activo = apiSede.Activo ?? false // Coloca 'false' si Activo es null
+            }).ToList();
+
+            return listaSedes;
+        }
+
+        public List<Models.Pagos> ListarPagos()
+        {
+            var resultadosApi = gestorAPI.ListarPagos();
+            var listaPagos = resultadosApi.Select(apiPago => new Models.Pagos
+            {
+                PagoID = apiPago.PagoID,
+                SuscripcionID = apiPago.SuscripcionID,
+                FechaPago = apiPago.FechaPago ?? default(DateTime),
+                Monto = apiPago.Monto,
+                MetodoPago = apiPago.MetodoPago,
+                Activo = apiPago.Activo ?? false
+            }).ToList();
+            return listaPagos;
+        }
     }
 }

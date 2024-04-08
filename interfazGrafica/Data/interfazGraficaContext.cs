@@ -20,5 +20,11 @@ namespace interfazGrafica.Data
         }
 
         public System.Data.Entity.DbSet<interfazGrafica.Models.Clientes> Clientes { get; set; }
+
+        public System.Data.Entity.DbSet<interfazGrafica.Models.Sedes> Sedes { get; set; }
+
+        public System.Data.Entity.DbSet<interfazGrafica.Models.Pagos> Pagos { get; set; }
+
+        public System.Data.Entity.DbSet<interfazGrafica.Models.Suscripciones> Suscripciones { get; set; }
     }
 }

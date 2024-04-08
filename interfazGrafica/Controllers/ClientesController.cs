@@ -111,11 +111,6 @@ namespace interfazGrafica.Views.UIClientes
         // GET: Clientes/Delete/5
         public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
             API_Crud.Cliente clienteBuscado = logicaCRUD.buscarCliente(id);
             Clientes clienteFinal = new Clientes
             {
@@ -147,7 +142,7 @@ namespace interfazGrafica.Views.UIClientes
            
             return RedirectToAction("Index");
         }
-
+        /*
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -155,6 +150,6 @@ namespace interfazGrafica.Views.UIClientes
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
+        }*/
     }
 }

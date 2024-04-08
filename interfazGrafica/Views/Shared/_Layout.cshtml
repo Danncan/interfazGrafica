@@ -3,34 +3,62 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Applicatio</title>
-    @Styles.Render("~/Content/css")
+    <title>@ViewBag.Title - PhysioFitness</title>
+    @Styles.Render("~/Sources/styles.css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/bootstrap")
+
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+    <div class="contenedor-header">
+        <header>
+            <h1>Physio<span class="txtRojo">Fitness</span></h1>
+            <nav id="nav">
+                @Html.ActionLink("Clientes", "Index", "Clientes", new { area = "" }, new { @class = "nav-link" })
+
+                <!-- Aquí se debería utilizar un componente de terceros para dropdown o escribir el HTML manualmente -->
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    CRUD
+                </a>
+                <!-- Dropdown items con Html.ActionLink para .NET Framework -->
+                <ul class="dropdown-menu bg-black">
+                    @Html.ActionLink("Clientes", "Index", "Clientes", new { area = "" }, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Proveedores", "Index", "Proveedores", new { area = "" }, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Categorias", "Index", "Categorias", new { area = "" }, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Facturas", "Index", "Facturas", new { area = "" }, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Usuarios", "Index", "Usuarios", new { area = "" }, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Detalle de Factura", "Index", "DetalleFactura", new { area = "" }, new { @class = "dropdown-item" })
                 </ul>
-            </div>
-        </div>
-    </nav>
+            </nav>
+            <!-- El resto de tu HTML aquí -->
+        </header>
+    </div>
+    <button type="button" class="btn btn-success">Prueba Bootstrap</button>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+
+    <footer>
+        <div class="info">
+            <p>2023 - <span class="txtRojo">physiofitnes</span> Todos los derechos reservados</p>
+            <div class="redes">
+                <a href="https://www.facebook.com/physiofitness.valle/?locale=es_LA">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="https://www.instagram.com/physiofitnessvallegym/">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

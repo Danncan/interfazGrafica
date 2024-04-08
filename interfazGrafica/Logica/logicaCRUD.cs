@@ -63,6 +63,10 @@ namespace interfazGrafica.Logica
         {
             api.EliminarSede(id);
         }
+        public Sede buscarSede(int id)
+        {
+            return api.ObtenerSedePorId(id);
+        }
         #endregion
         #region Pagos
         public void CrearPago(Models.Pagos pagoInsert)
@@ -74,6 +78,10 @@ namespace interfazGrafica.Logica
         {
             API_Crud.Pago pagoActualizado = pagoActualizar.pagosAPI();
             api.ActualizarPago(pagoActualizado);
+        }
+        public Pago buscarPago(int id)
+        {
+            return api.ObtenerPagoPorId(id);
         }
         public void EliminarPago(int id)
         {
