@@ -138,11 +138,13 @@ namespace interfazGrafica.Logica
                     Activo = apiSuscripcion.Activo ?? false,
                 }).ToList();
 
-                cache.Set(cacheKey, suscripcionesIndex, DateTimeOffset.UtcNow.Add(cacheDuration));
+                // Almacenar en caché
+                cache.Set(cacheKey, suscripcionesIndex, DateTimeOffset.UtcNow.AddMinutes(30)); // Asumiendo cacheDuration de 30 minutos
             }
 
             return suscripcionesIndex;
         }
+
 
         private void ActualizarCache<T>(string cacheKey, Func<List<T>> obtenerDatosDesdeApi)
         {
@@ -206,10 +208,22 @@ namespace interfazGrafica.Logica
             }).ToList());
         }
 
-        public void ActualizarCacheSuscripcionesIndez()
+        public void ActualizarCacheSuscripcionesIndex()
         {
-            ActualizarCache("suscripcionesCacheKey", ListarSuscripcionesIndex);
+            ActualizarCache("suscripcionesIndexCacheKey", () => gestorAPI.suscripcionesConNombresFinales().Select(apiSuscripcion => new Models.SuscripcionesIndex
+            {
+                SuscripcionID = apiSuscripcion.SuscripcionID,
+                ClienteID = apiSuscripcion.ClienteID,
+                SedeID = apiSuscripcion.SedeID,
+                Nombre = apiSuscripcion.Nombre,
+                NombreSede = apiSuscripcion.NombreSede,
+                FechaInicio = apiSuscripcion.FechaInicio ?? default(DateTime),
+                TipoSuscripcion = apiSuscripcion.TipoSuscripcion,
+                Estado = apiSuscripcion.Estado,
+                Activo = apiSuscripcion.Activo ?? false,
+            }).ToList());
         }
+
 
     }
 }

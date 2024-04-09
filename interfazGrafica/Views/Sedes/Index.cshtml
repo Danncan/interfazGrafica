@@ -1,4 +1,5 @@
-﻿@model IEnumerable<interfazGrafica.Models.Sedes>
+﻿@model PagedList.IPagedList<interfazGrafica.Models.Sedes>
+@using PagedList.Mvc; // Incluye esto para usar los helpers de PagedList
 
 @{
     ViewBag.Title = "Index";
@@ -12,40 +13,67 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NombreSede)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().NombreSede)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Direccion)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Direccion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Telefono)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Telefono)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Activo)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Activo)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreSede)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Activo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SedeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SedeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SedeID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreSede)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.SedeID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SedeID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SedeID })
+            </td>
+        </tr>
+    }
 
 </table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+    new PagedListRenderOptions
+    {
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        DisplayLinkToIndividualPages = true,
+        DisplayPageCountAndCurrentLocation = false,
+        MaximumPageNumbersToDisplay = 5,
+        DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+        EllipsesFormat = "&#8230;",
+        LinkToFirstPageFormat = "Primera",
+        LinkToPreviousPageFormat = "Anterior",
+        LinkToNextPageFormat = "Siguiente",
+        LinkToLastPageFormat = "Última",
+        PageCountAndCurrentLocationFormat = "Página {0} de {1}.",
+        ItemSliceAndTotalFormat = "Mostrando {0} a {1} de {2} entradas.",
+        FunctionToDisplayEachPageNumber = null,
+        ClassToApplyToFirstListItemInPager = null,
+        ClassToApplyToLastListItemInPager = null,
+        ContainerDivClasses = new[] { "pagination-container" },
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new[] { "page-item" },
+    })

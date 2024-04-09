@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using interfazGrafica.Data;
 using interfazGrafica.Models;
 using interfazGrafica.Logica;
+using PagedList;
 
 namespace interfazGrafica.Views.UISedes
 {
@@ -18,9 +19,12 @@ namespace interfazGrafica.Views.UISedes
         logicaCRUD logicaCRUD = new logicaCRUD();
         logicaConsultas logicaConsultas = new logicaConsultas();
         // GET: Sedes
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(logicaConsultas.ListarSedes());
+            int pageSize = 100;
+            int pageNumber = (page ?? 1);
+            var sedes = logicaConsultas.ListarSedes().ToPagedList(pageNumber, pageSize);
+            return View(sedes);
         }
 
         // GET: Sedes/Details/5

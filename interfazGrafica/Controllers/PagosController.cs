@@ -10,6 +10,7 @@ using interfazGrafica.Data;
 using interfazGrafica.Logica;
 using interfazGrafica.Models;
 using System.Web.Caching;
+using PagedList;
 
 
 namespace interfazGrafica.Views.UIPagos
@@ -22,10 +23,15 @@ namespace interfazGrafica.Views.UIPagos
         List<Suscripciones> suscripcioneslst = new List<Suscripciones>();
 
         // GET: Pagos
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            
-            return View(logicaConsultas.ListarPagos());
+            int pageSize = 10; // El número de pagos que quieres mostrar por página
+            int pageNumber = (page ?? 1); // Si 'page' es null, establecer a 1
+
+            // Asumiendo que logicaConsultas.ListarPagos() devuelve IQueryable o puede modificarse para ello
+            var pagos = logicaConsultas.ListarPagos().ToPagedList(pageNumber, pageSize);
+
+            return View(pagos);
         }
 
         // GET: Pagos/Details/5
@@ -54,6 +60,7 @@ namespace interfazGrafica.Views.UIPagos
         {
             var suscripciones = ObtenerSuscripcionesDesdeCache();
             ViewBag.SuscripcionID = new SelectList(suscripciones, "SuscripcionID", "SuscripcionID");
+            logicaConsultas.ActualizarCachePagos();
             return View();
         }
 
@@ -106,6 +113,8 @@ namespace interfazGrafica.Views.UIPagos
             if (ModelState.IsValid)
             {  
                 logicaCRUD.ActualizarPago(pagos);
+                logicaConsultas.ActualizarCachePagos();
+
                 return RedirectToAction("Index");
             }
             var suscripciones = ObtenerSuscripcionesDesdeCache();
@@ -140,6 +149,8 @@ namespace interfazGrafica.Views.UIPagos
         {
            API_Crud.Pago pagoBuscado = logicaCRUD.buscarPago(id);
             logicaCRUD.EliminarPago(pagoBuscado.PagoID);
+            logicaConsultas.ActualizarCachePagos();
+
             return RedirectToAction("Index");
         }
 

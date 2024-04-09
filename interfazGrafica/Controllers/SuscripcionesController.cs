@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using interfazGrafica.Data;
 using interfazGrafica.Logica;
 using interfazGrafica.Models;
+using PagedList;
 
 namespace interfazGrafica.Views.UISuscripciones
 {
@@ -19,10 +20,15 @@ namespace interfazGrafica.Views.UISuscripciones
         logicaConsultas logicaConsultas = new logicaConsultas();
 
         // GET: Suscripciones
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            
-            return View(logicaConsultas.ListarSuscripcionesIndex());
+            int pageSize = 10;  // Puedes cambiar este número para mostrar la cantidad deseada de suscripciones por página
+            int pageNumber = (page ?? 1);
+
+            // Asegúrate de que el método ListarSuscripcionesIndex() pueda ordenarse si es necesario y sea convertible a IPagedList usando ToPagedList()
+            var suscripciones = logicaConsultas.ListarSuscripcionesIndex().ToPagedList(pageNumber, pageSize);
+
+            return View(suscripciones);
         }
 
         // GET: Suscripciones/Details/5

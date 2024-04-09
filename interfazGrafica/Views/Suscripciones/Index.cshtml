@@ -1,38 +1,40 @@
-﻿    @model IEnumerable<interfazGrafica.Models.SuscripcionesIndex>
+﻿@model PagedList.IPagedList<interfazGrafica.Models.SuscripcionesIndex>
+@using PagedList.Mvc; // Asegúrate de que PagedList.Mvc esté instalado y referenciado
 
-    @{
-        ViewBag.Title = "Index";
-    }
+@{
+    ViewBag.Title = "Index";
+}
 
-    <h2>Index</h2>
+<h2>Index</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreSede)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaInicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoSuscripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Activo)
-            </th>
-            <th></th>
-        </tr>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().NombreSede)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().FechaInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().TipoSuscripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Activo)
+        </th>
+        <th>Opciones</th>
+    </tr>
 
-    @foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
@@ -53,11 +55,26 @@
                 @Html.DisplayFor(modelItem => item.Activo)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.SuscripcionID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.SuscripcionID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.SuscripcionID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.SuscripcionID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SuscripcionID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SuscripcionID })
             </td>
         </tr>
     }
 
-    </table>
+</table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+{
+    DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+    DisplayLinkToLastPage = PagedListDisplayMode.Always,
+    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+    DisplayLinkToNextPage = PagedListDisplayMode.Always,
+    DisplayLinkToIndividualPages = true,
+    DisplayPageCountAndCurrentLocation = false,
+    MaximumPageNumbersToDisplay = 5,
+    DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+    // ... y otros ajustes de estilo si los necesitas
+    UlElementClasses = new string[] { "pagination" }, // Clases de Bootstrap para la paginación
+    LiElementClasses = new string[] { "page-item" }, // Clases de Bootstrap para cada ítem de la paginación
+})

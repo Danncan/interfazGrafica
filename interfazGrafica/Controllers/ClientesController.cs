@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using interfazGrafica.Data;
 using interfazGrafica.Logica;
 using interfazGrafica.Models;
+using PagedList;
 
 namespace interfazGrafica.Views.UIClientes
 {
@@ -19,9 +20,13 @@ namespace interfazGrafica.Views.UIClientes
         logicaConsultas logicaConsultas = new logicaConsultas();
 
         // GET: Clientes
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(logicaConsultas.ListarClientes());
+            int pageSize = 100;
+            int pageNumber = (page ?? 1);
+
+            var clientes = logicaConsultas.ListarClientes().ToPagedList(pageNumber, pageSize);
+            return View(clientes);
         }
 
         // GET: Clientes/Details/5
@@ -62,6 +67,7 @@ namespace interfazGrafica.Views.UIClientes
             if (ModelState.IsValid)
             {
                 logicaCRUD.CrearCliente(clientes);
+                logicaConsultas.ActualizarCacheClientes();
                 return RedirectToAction("Index");
             }
 
@@ -101,6 +107,8 @@ namespace interfazGrafica.Views.UIClientes
             {
 
                 logicaCRUD.ActualizarCliente(clientes);
+                logicaConsultas.ActualizarCacheClientes();
+
 
                 return RedirectToAction("Index");
             }
@@ -138,7 +146,8 @@ namespace interfazGrafica.Views.UIClientes
         {
             API_Crud.Cliente clienteBuscado = logicaCRUD.buscarCliente(id);           
             logicaCRUD.EliminarCliente(clienteBuscado.ClienteID);
-           
+            logicaConsultas.ActualizarCacheClientes();
+
             return RedirectToAction("Index");
         }
         /*

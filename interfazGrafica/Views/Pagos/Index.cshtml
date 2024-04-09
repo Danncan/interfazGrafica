@@ -1,4 +1,5 @@
-﻿@model IEnumerable<interfazGrafica.Models.Pagos>
+﻿@model PagedList.IPagedList<interfazGrafica.Models.Pagos>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -12,46 +13,73 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.SuscripcionID)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().SuscripcionID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaPago)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().FechaPago)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Monto)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Monto)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MetodoPago)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().MetodoPago)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Activo)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Activo)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SuscripcionID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaPago)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Monto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MetodoPago)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Activo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PagoID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PagoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PagoID })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuscripcionID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Monto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MetodoPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PagoID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PagoID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PagoID })
+            </td>
+        </tr>
+    }
 </table>
+
+<!-- Añadir la paginación aquí -->
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+    new PagedListRenderOptions
+    {
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        DisplayLinkToIndividualPages = true,
+        DisplayPageCountAndCurrentLocation = false,
+        MaximumPageNumbersToDisplay = 5,
+        DisplayEllipsesWhenNotShowingAllPageNumbers = true,
+        EllipsesFormat = "&#8230;",
+        LinkToFirstPageFormat = "Primera",
+        LinkToPreviousPageFormat = "Anterior",
+        LinkToNextPageFormat = "Siguiente",
+        LinkToLastPageFormat = "Última",
+        PageCountAndCurrentLocationFormat = "Página {0} de {1}.",
+        ItemSliceAndTotalFormat = "Mostrando {0} a {1} de {2} entradas.",
+        FunctionToDisplayEachPageNumber = null,
+        ClassToApplyToFirstListItemInPager = null,
+        ClassToApplyToLastListItemInPager = null,
+        ContainerDivClasses = new[] { "pagination-container" },
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new[] { "page-item" },
+    })
