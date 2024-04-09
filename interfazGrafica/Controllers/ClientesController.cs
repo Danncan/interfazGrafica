@@ -99,7 +99,6 @@ namespace interfazGrafica.Views.UIClientes
         {
             if (ModelState.IsValid)
             {
-               API_Crud.Cliente clienteFinal= clientes.clienteAPI();
 
                 logicaCRUD.ActualizarCliente(clientes);
 

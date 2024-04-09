@@ -60,6 +60,7 @@ namespace interfazGrafica.Views.UISedes
             if (ModelState.IsValid)
             {
                logicaCRUD.CrearSede(sedes);
+                logicaConsultas.ActualizarCacheSedes();
                 return RedirectToAction("Index");
             }
 
@@ -97,7 +98,8 @@ namespace interfazGrafica.Views.UISedes
         {
             if (ModelState.IsValid)
             {
-                API_Crud.Sede sedeActualizada = sedes.sedeAPI();
+                logicaCRUD.ActualizarSede(sedes);
+                logicaConsultas.ActualizarCacheSedes();
                 return RedirectToAction("Index");
             }
             return View(sedes);
@@ -131,6 +133,7 @@ namespace interfazGrafica.Views.UISedes
         {
             API_Crud.Sede sedeBuscada = logicaCRUD.buscarSede(id);
             logicaCRUD.EliminarSede(id);
+            logicaConsultas.ActualizarCacheSedes();
             return RedirectToAction("Index");
         }
         /*
