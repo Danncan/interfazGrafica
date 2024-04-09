@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using interfazGrafica.Data;
+using interfazGrafica.Logica;
 using interfazGrafica.Models;
 
 namespace interfazGrafica.Views.UISuscripciones
@@ -14,12 +15,14 @@ namespace interfazGrafica.Views.UISuscripciones
     public class SuscripcionesController : Controller
     {
         private interfazGraficaContext db = new interfazGraficaContext();
+       logicaCRUD logicaCRUD = new logicaCRUD();
+        logicaConsultas logicaConsultas = new logicaConsultas();
 
         // GET: Suscripciones
         public ActionResult Index()
         {
-            var suscripciones = db.Suscripciones.Include(s => s.Cliente).Include(s => s.Sede);
-            return View(suscripciones.ToList());
+            
+            return View(logicaConsultas.ListarSuscripciones());
         }
 
         // GET: Suscripciones/Details/5

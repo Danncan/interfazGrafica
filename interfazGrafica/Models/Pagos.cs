@@ -30,7 +30,6 @@ namespace interfazGrafica.Models
                 Monto = this.Monto,
                 MetodoPago = this.MetodoPago,
                 Activo = this.Activo,
-                Suscripcione = this.Suscripcione.suscripcionesAPI(),
             };
           
         }

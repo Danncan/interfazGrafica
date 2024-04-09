@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Linq; // No olvides incluir esta directiva
 
 
 namespace interfazGrafica.Logica
@@ -64,5 +63,26 @@ namespace interfazGrafica.Logica
             }).ToList();
             return listaPagos;
         }
+
+        public List<Models.Suscripciones> ListarSuscripciones()
+        {
+            var resultadosApi = gestorAPI.ListarSuscripciones();
+            var listaSuscripciones = resultadosApi.Select(apiSuscripcion => new Models.Suscripciones
+            {
+                SuscripcionID = apiSuscripcion.SuscripcionID,
+                ClienteID = apiSuscripcion.ClienteID,
+                SedeID = apiSuscripcion.SedeID,
+                FechaInicio = apiSuscripcion.FechaInicio ?? default(DateTime),
+                TipoSuscripcion = apiSuscripcion.TipoSuscripcion,
+                Estado = apiSuscripcion.Estado,
+                Activo = apiSuscripcion.Activo ?? false,
+                
+            }).ToList();
+
+            return listaSuscripciones;
+        }
+       
+
+
     }
 }

@@ -148,6 +148,34 @@
           <s:element minOccurs="1" maxOccurs="1" name="TotalSuscripciones" nillable="true" type="s:int" />
         </s:sequence>
       </s:complexType>
+      <s:element name="suscripcionesConNombresFinales">
+        <s:complexType />
+      </s:element>
+      <s:element name="suscripcionesConNombresFinalesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="suscripcionesConNombresFinalesResult" type="tns:ArrayOfSP_ListSuscripcionesConNombresFinales_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSP_ListSuscripcionesConNombresFinales_Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SP_ListSuscripcionesConNombresFinales_Result" nillable="true" type="tns:SP_ListSuscripcionesConNombresFinales_Result" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SP_ListSuscripcionesConNombresFinales_Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SuscripcionID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClienteID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SedeID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreSede" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicio" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoSuscripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Activo" nillable="true" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -196,6 +224,12 @@
   <wsdl:message name="sedesConMasSuscripcionesSoapOut">
     <wsdl:part name="parameters" element="tns:sedesConMasSuscripcionesResponse" />
   </wsdl:message>
+  <wsdl:message name="suscripcionesConNombresFinalesSoapIn">
+    <wsdl:part name="parameters" element="tns:suscripcionesConNombresFinales" />
+  </wsdl:message>
+  <wsdl:message name="suscripcionesConNombresFinalesSoapOut">
+    <wsdl:part name="parameters" element="tns:suscripcionesConNombresFinalesResponse" />
+  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -226,6 +260,10 @@
     <wsdl:operation name="sedesConMasSuscripciones">
       <wsdl:input message="tns:sedesConMasSuscripcionesSoapIn" />
       <wsdl:output message="tns:sedesConMasSuscripcionesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="suscripcionesConNombresFinales">
+      <wsdl:input message="tns:suscripcionesConNombresFinalesSoapIn" />
+      <wsdl:output message="tns:suscripcionesConNombresFinalesSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -281,6 +319,15 @@
     </wsdl:operation>
     <wsdl:operation name="sedesConMasSuscripciones">
       <soap:operation soapAction="http://tempuri.org/sedesConMasSuscripciones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="suscripcionesConNombresFinales">
+      <soap:operation soapAction="http://tempuri.org/suscripcionesConNombresFinales" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -347,6 +394,15 @@
     </wsdl:operation>
     <wsdl:operation name="sedesConMasSuscripciones">
       <soap12:operation soapAction="http://tempuri.org/sedesConMasSuscripciones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="suscripcionesConNombresFinales">
+      <soap12:operation soapAction="http://tempuri.org/suscripcionesConNombresFinales" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

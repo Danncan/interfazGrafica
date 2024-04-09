@@ -106,10 +106,7 @@ namespace interfazGrafica.Views.UISedes
         // GET: Sedes/Delete/5
         public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+           
             API_Crud.Sede sedeBuscada = logicaCRUD.buscarSede(id);
             Sedes sedeFinal = new Sedes
             {

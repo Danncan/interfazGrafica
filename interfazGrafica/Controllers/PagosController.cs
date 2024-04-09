@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using interfazGrafica.Data;
 using interfazGrafica.Logica;
 using interfazGrafica.Models;
+using System.Web.Caching;
+
 
 namespace interfazGrafica.Views.UIPagos
 {
@@ -17,6 +19,7 @@ namespace interfazGrafica.Views.UIPagos
         private interfazGraficaContext db = new interfazGraficaContext();
         logicaCRUD logicaCRUD = new logicaCRUD();
         logicaConsultas logicaConsultas = new logicaConsultas();
+        List<Suscripciones> suscripcioneslst = new List<Suscripciones>();
 
         // GET: Pagos
         public ActionResult Index()
@@ -49,7 +52,8 @@ namespace interfazGrafica.Views.UIPagos
         // GET: Pagos/Create
         public ActionResult Create()
         {
-            ViewBag.SuscripcionID = new SelectList(db.Suscripciones, "SuscripcionID", "TipoSuscripcion");
+            var suscripciones = ObtenerSuscripcionesDesdeCache();
+            ViewBag.SuscripcionID = new SelectList(suscripciones, "SuscripcionID", "SuscripcionID");
             return View();
         }
 
@@ -62,29 +66,34 @@ namespace interfazGrafica.Views.UIPagos
         {
             if (ModelState.IsValid)
             {
-                db.Pagos.Add(pagos);
-                db.SaveChanges();
+                
+                logicaCRUD.CrearPago(pagos);
                 return RedirectToAction("Index");
             }
-
-            ViewBag.SuscripcionID = new SelectList(db.Suscripciones, "SuscripcionID", "TipoSuscripcion", pagos.SuscripcionID);
             return View(pagos);
         }
 
         // GET: Pagos/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
+            API_Crud.Pago pagoBuscado = logicaCRUD.buscarPago(id);
+            Pagos pagofinal = new Pagos
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Pagos pagos = db.Pagos.Find(id);
-            if (pagos == null)
+                PagoID = pagoBuscado.PagoID,
+                SuscripcionID = pagoBuscado.SuscripcionID,
+                FechaPago = pagoBuscado.FechaPago,
+                Monto = pagoBuscado.Monto,
+                MetodoPago = pagoBuscado.MetodoPago,
+                Activo = pagoBuscado.Activo,
+            };
+           
+            if (pagofinal == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.SuscripcionID = new SelectList(db.Suscripciones, "SuscripcionID", "TipoSuscripcion", pagos.SuscripcionID);
-            return View(pagos);
+            var suscripciones = ObtenerSuscripcionesDesdeCache();
+            ViewBag.SuscripcionID = new SelectList(suscripciones, "SuscripcionID", "SuscripcionID");
+            return View(pagofinal);
         }
 
         // POST: Pagos/Edit/5
@@ -95,28 +104,33 @@ namespace interfazGrafica.Views.UIPagos
         public ActionResult Edit([Bind(Include = "PagoID,SuscripcionID,FechaPago,Monto,MetodoPago,Activo")] Pagos pagos)
         {
             if (ModelState.IsValid)
-            {
-                db.Entry(pagos).State = EntityState.Modified;
-                db.SaveChanges();
+            {  
+                logicaCRUD.ActualizarPago(pagos);
                 return RedirectToAction("Index");
             }
-            ViewBag.SuscripcionID = new SelectList(db.Suscripciones, "SuscripcionID", "TipoSuscripcion", pagos.SuscripcionID);
+            var suscripciones = ObtenerSuscripcionesDesdeCache();
+            ViewBag.SuscripcionID = new SelectList(suscripciones, "SuscripcionID", "SuscripcionID");
             return View(pagos);
         }
 
         // GET: Pagos/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
+            API_Crud.Pago pagoBuscado = logicaCRUD.buscarPago(id);
+            Pagos pagosFINAL = new Pagos
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Pagos pagos = db.Pagos.Find(id);
-            if (pagos == null)
+                PagoID = pagoBuscado.PagoID,
+                SuscripcionID = pagoBuscado.SuscripcionID,
+                FechaPago = pagoBuscado.FechaPago,
+                Monto = pagoBuscado.Monto,
+                MetodoPago = pagoBuscado.MetodoPago,
+                Activo = pagoBuscado.Activo,
+            };
+            if (pagosFINAL == null)
             {
                 return HttpNotFound();
             }
-            return View(pagos);
+            return View(pagosFINAL);
         }
 
         // POST: Pagos/Delete/5
@@ -124,9 +138,8 @@ namespace interfazGrafica.Views.UIPagos
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Pagos pagos = db.Pagos.Find(id);
-            db.Pagos.Remove(pagos);
-            db.SaveChanges();
+           API_Crud.Pago pagoBuscado = logicaCRUD.buscarPago(id);
+            logicaCRUD.EliminarPago(pagoBuscado.PagoID);
             return RedirectToAction("Index");
         }
 
@@ -138,5 +151,27 @@ namespace interfazGrafica.Views.UIPagos
             }
             base.Dispose(disposing);
         }
+        public List<Models.Suscripciones> ObtenerSuscripcionesDesdeCache()
+        {
+            // Clave única para identificar los datos en el caché
+            string cacheKey = "listaSuscripciones";
+
+            // Intenta obtener los datos desde el caché
+            var suscripciones = HttpRuntime.Cache[cacheKey] as List<Models.Suscripciones>;
+
+            // Verifica si los datos ya están en el caché
+            if (suscripciones == null)
+            {
+                // Los datos no están en caché, así que los cargamos
+                suscripciones = logicaConsultas.ListarSuscripciones();
+
+                // Guarda los datos en el caché para su uso futuro
+                // Puedes ajustar el tiempo de expiración según las necesidades de tu aplicación
+                HttpRuntime.Cache.Insert(cacheKey, suscripciones, null, DateTime.Now.AddMinutes(30), Cache.NoSlidingExpiration);
+            }
+
+            return suscripciones;
+        }
+
     }
 }

@@ -41,6 +41,8 @@ namespace interfazGrafica.Api_Consultas {
         
         private System.Threading.SendOrPostCallback sedesConMasSuscripcionesOperationCompleted;
         
+        private System.Threading.SendOrPostCallback suscripcionesConNombresFinalesOperationCompleted;
+        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
@@ -98,6 +100,9 @@ namespace interfazGrafica.Api_Consultas {
         
         /// <remarks/>
         public event sedesConMasSuscripcionesCompletedEventHandler sedesConMasSuscripcionesCompleted;
+        
+        /// <remarks/>
+        public event suscripcionesConNombresFinalesCompletedEventHandler suscripcionesConNombresFinalesCompleted;
         
         /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
@@ -265,6 +270,33 @@ namespace interfazGrafica.Api_Consultas {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/suscripcionesConNombresFinales", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public SP_ListSuscripcionesConNombresFinales_Result[] suscripcionesConNombresFinales() {
+            object[] results = this.Invoke("suscripcionesConNombresFinales", new object[0]);
+            return ((SP_ListSuscripcionesConNombresFinales_Result[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void suscripcionesConNombresFinalesAsync() {
+            this.suscripcionesConNombresFinalesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void suscripcionesConNombresFinalesAsync(object userState) {
+            if ((this.suscripcionesConNombresFinalesOperationCompleted == null)) {
+                this.suscripcionesConNombresFinalesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsuscripcionesConNombresFinalesOperationCompleted);
+            }
+            this.InvokeAsync("suscripcionesConNombresFinales", new object[0], this.suscripcionesConNombresFinalesOperationCompleted, userState);
+        }
+        
+        private void OnsuscripcionesConNombresFinalesOperationCompleted(object arg) {
+            if ((this.suscripcionesConNombresFinalesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.suscripcionesConNombresFinalesCompleted(this, new suscripcionesConNombresFinalesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -402,6 +434,127 @@ namespace interfazGrafica.Api_Consultas {
             }
             set {
                 this.cedulaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> Activo {
+            get {
+                return this.activoField;
+            }
+            set {
+                this.activoField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class SP_ListSuscripcionesConNombresFinales_Result {
+        
+        private int suscripcionIDField;
+        
+        private System.Nullable<int> clienteIDField;
+        
+        private System.Nullable<int> sedeIDField;
+        
+        private string nombreField;
+        
+        private string nombreSedeField;
+        
+        private System.Nullable<System.DateTime> fechaInicioField;
+        
+        private string tipoSuscripcionField;
+        
+        private string estadoField;
+        
+        private System.Nullable<bool> activoField;
+        
+        /// <remarks/>
+        public int SuscripcionID {
+            get {
+                return this.suscripcionIDField;
+            }
+            set {
+                this.suscripcionIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> ClienteID {
+            get {
+                return this.clienteIDField;
+            }
+            set {
+                this.clienteIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> SedeID {
+            get {
+                return this.sedeIDField;
+            }
+            set {
+                this.sedeIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Nombre {
+            get {
+                return this.nombreField;
+            }
+            set {
+                this.nombreField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NombreSede {
+            get {
+                return this.nombreSedeField;
+            }
+            set {
+                this.nombreSedeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> FechaInicio {
+            get {
+                return this.fechaInicioField;
+            }
+            set {
+                this.fechaInicioField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TipoSuscripcion {
+            get {
+                return this.tipoSuscripcionField;
+            }
+            set {
+                this.tipoSuscripcionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Estado {
+            get {
+                return this.estadoField;
+            }
+            set {
+                this.estadoField = value;
             }
         }
         
@@ -913,6 +1066,32 @@ namespace interfazGrafica.Api_Consultas {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((SP_SedeConMasSuscripcionesActivas_Result[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void suscripcionesConNombresFinalesCompletedEventHandler(object sender, suscripcionesConNombresFinalesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class suscripcionesConNombresFinalesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal suscripcionesConNombresFinalesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public SP_ListSuscripcionesConNombresFinales_Result[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((SP_ListSuscripcionesConNombresFinales_Result[])(this.results[0]));
             }
         }
     }

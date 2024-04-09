@@ -14,8 +14,7 @@ namespace interfazGrafica.Logica
         public void CrearCliente(Models.Clientes clietneaInsert)
         {
             API_Crud.Cliente clienteInsertado = clietneaInsert.clienteAPI();
-           
-
+         
             api.InsertarCliente(clienteInsertado);
         }
         public void ActualizarCliente(Models.Clientes clienteActualizar)
