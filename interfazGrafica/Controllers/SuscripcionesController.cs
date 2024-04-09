@@ -22,29 +22,42 @@ namespace interfazGrafica.Views.UISuscripciones
         public ActionResult Index()
         {
             
-            return View(logicaConsultas.ListarSuscripciones());
+            return View(logicaConsultas.ListarSuscripcionesIndex());
         }
 
         // GET: Suscripciones/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
+            API_Crud.Suscripcione suscripcionBuscada= logicaCRUD.buscarSuscripcion(id) ;
+
+            Suscripciones suscripcionFinal= new Suscripciones
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Suscripciones suscripciones = db.Suscripciones.Find(id);
-            if (suscripciones == null)
+                ClienteID = suscripcionBuscada.ClienteID,
+                SedeID = suscripcionBuscada.SedeID,
+                FechaInicio = suscripcionBuscada.FechaInicio,
+                TipoSuscripcion = suscripcionBuscada.TipoSuscripcion,
+                Estado = suscripcionBuscada.Estado,
+                Activo = suscripcionBuscada.Activo,
+                SuscripcionID = suscripcionBuscada.SuscripcionID
+            };
+
+
+            if (suscripcionFinal == null)
             {
                 return HttpNotFound();
             }
-            return View(suscripciones);
+            return View(suscripcionFinal);
         }
 
         // GET: Suscripciones/Create
         public ActionResult Create()
         {
-            ViewBag.ClienteID = new SelectList(db.Clientes, "ClienteID", "Nombre");
-            ViewBag.SedeID = new SelectList(db.Sedes, "SedeID", "NombreSede");
+            var clientes = logicaConsultas.ListarClientes();
+            var sedes = logicaConsultas.ListarSedes();
+
+            // Creas las SelectList usando los datos obtenidos de la API
+            ViewBag.ClienteID = new SelectList(clientes, "ClienteID", "Nombre");
+            ViewBag.SedeID = new SelectList(sedes, "SedeID", "NombreSede");
             return View();
         }
 
@@ -57,31 +70,46 @@ namespace interfazGrafica.Views.UISuscripciones
         {
             if (ModelState.IsValid)
             {
-                db.Suscripciones.Add(suscripciones);
-                db.SaveChanges();
+                logicaCRUD.CrearSuscripcion(suscripciones);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ClienteID = new SelectList(db.Clientes, "ClienteID", "Nombre", suscripciones.ClienteID);
-            ViewBag.SedeID = new SelectList(db.Sedes, "SedeID", "NombreSede", suscripciones.SedeID);
+            var clientes = logicaConsultas.ListarClientes();
+            var sedes = logicaConsultas.ListarSedes();
+
+            // Creas las SelectList usando los datos obtenidos de la API
+            ViewBag.ClienteID = new SelectList(clientes, "ClienteID", "Nombre");
+            ViewBag.SedeID = new SelectList(sedes, "SedeID", "NombreSede");
+
             return View(suscripciones);
         }
 
         // GET: Suscripciones/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
+            API_Crud.Suscripcione suscripcionBuscada = logicaCRUD.buscarSuscripcion(id);
+            Suscripciones suscripcionFinal = new Suscripciones
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Suscripciones suscripciones = db.Suscripciones.Find(id);
-            if (suscripciones == null)
+                ClienteID = suscripcionBuscada.ClienteID,
+                SedeID = suscripcionBuscada.SedeID,
+                FechaInicio = suscripcionBuscada.FechaInicio,
+                TipoSuscripcion = suscripcionBuscada.TipoSuscripcion,
+                Estado = suscripcionBuscada.Estado,
+                Activo = suscripcionBuscada.Activo,
+                SuscripcionID = suscripcionBuscada.SuscripcionID
+            };
+            if (suscripcionFinal == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ClienteID = new SelectList(db.Clientes, "ClienteID", "Nombre", suscripciones.ClienteID);
-            ViewBag.SedeID = new SelectList(db.Sedes, "SedeID", "NombreSede", suscripciones.SedeID);
-            return View(suscripciones);
+            var clientes = logicaConsultas.ListarClientes();
+            var sedes = logicaConsultas.ListarSedes();
+
+            // Creas las SelectList usando los datos obtenidos de la API
+            ViewBag.ClienteID = new SelectList(clientes, "ClienteID", "Nombre");
+            ViewBag.SedeID = new SelectList(sedes, "SedeID", "NombreSede");
+
+            return View(suscripcionFinal);
         }
 
         // POST: Suscripciones/Edit/5
@@ -93,28 +121,40 @@ namespace interfazGrafica.Views.UISuscripciones
         {
             if (ModelState.IsValid)
             {
-                db.Entry(suscripciones).State = EntityState.Modified;
-                db.SaveChanges();
+                API_Crud.Suscripcione suscripcionActualizada = suscripciones.suscripcionesAPI();
+                logicaCRUD.ActualizarSuscripcion(suscripciones);
                 return RedirectToAction("Index");
             }
-            ViewBag.ClienteID = new SelectList(db.Clientes, "ClienteID", "Nombre", suscripciones.ClienteID);
-            ViewBag.SedeID = new SelectList(db.Sedes, "SedeID", "NombreSede", suscripciones.SedeID);
+            var clientes = logicaConsultas.ListarClientes();
+            var sedes = logicaConsultas.ListarSedes();
+
+            // Creas las SelectList usando los datos obtenidos de la API
+            ViewBag.ClienteID = new SelectList(clientes, "ClienteID", "Nombre");
+            ViewBag.SedeID = new SelectList(sedes, "SedeID", "NombreSede");
+
             return View(suscripciones);
         }
 
         // GET: Suscripciones/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
+            API_Crud.Suscripcione suscripcionBuscada = logicaCRUD.buscarSuscripcion(id);
+            Suscripciones suscripcionFinal = new Suscripciones
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Suscripciones suscripciones = db.Suscripciones.Find(id);
-            if (suscripciones == null)
+                ClienteID = suscripcionBuscada.ClienteID,
+                SedeID = suscripcionBuscada.SedeID,
+                FechaInicio = suscripcionBuscada.FechaInicio,
+                TipoSuscripcion = suscripcionBuscada.TipoSuscripcion,
+                Estado = suscripcionBuscada.Estado,
+                Activo = suscripcionBuscada.Activo,
+                SuscripcionID = suscripcionBuscada.SuscripcionID
+            };
+
+            if (suscripcionFinal == null)
             {
                 return HttpNotFound();
             }
-            return View(suscripciones);
+            return View(suscripcionFinal);
         }
 
         // POST: Suscripciones/Delete/5
@@ -122,9 +162,8 @@ namespace interfazGrafica.Views.UISuscripciones
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Suscripciones suscripciones = db.Suscripciones.Find(id);
-            db.Suscripciones.Remove(suscripciones);
-            db.SaveChanges();
+           API_Crud.Suscripcione suscripcionBuscada = logicaCRUD.buscarSuscripcion(id);
+            logicaCRUD.EliminarSuscripcion(suscripcionBuscada.SuscripcionID);
             return RedirectToAction("Index");
         }
 

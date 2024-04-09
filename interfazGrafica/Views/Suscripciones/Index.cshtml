@@ -1,4 +1,4 @@
-﻿    @model IEnumerable<interfazGrafica.Models.Suscripciones>
+﻿    @model IEnumerable<interfazGrafica.Models.SuscripcionesIndex>
 
     @{
         ViewBag.Title = "Index";
@@ -12,10 +12,10 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Cliente.Nombre)
+                @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Sede.NombreSede)
+                @Html.DisplayNameFor(model => model.NombreSede)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaInicio)
@@ -35,10 +35,10 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+                @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Sede.NombreSede)
+                @Html.DisplayFor(modelItem => item.NombreSede)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaInicio)

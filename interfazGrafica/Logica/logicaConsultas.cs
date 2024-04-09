@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Web;
 
 
@@ -49,6 +50,8 @@ namespace interfazGrafica.Logica
             return listaSedes;
         }
 
+
+
         public List<Models.Pagos> ListarPagos()
         {
             var resultadosApi = gestorAPI.ListarPagos();
@@ -76,13 +79,29 @@ namespace interfazGrafica.Logica
                 TipoSuscripcion = apiSuscripcion.TipoSuscripcion,
                 Estado = apiSuscripcion.Estado,
                 Activo = apiSuscripcion.Activo ?? false,
-                
+
             }).ToList();
 
             return listaSuscripciones;
         }
-       
+        public List<Models.SuscripcionesIndex> ListarSuscripcionesIndex()
+        {
+            var resultadosApi = gestorAPI.suscripcionesConNombresFinales();
+            var listaSuscripcionesIndex = resultadosApi.Select(apiSuscripcion => new Models.SuscripcionesIndex
+            {
+                SuscripcionID = apiSuscripcion.SuscripcionID,
+                ClienteID = apiSuscripcion.ClienteID,
+                SedeID = apiSuscripcion.SedeID,
+                Nombre = apiSuscripcion.Nombre,
+                NombreSede = apiSuscripcion.NombreSede,
+                FechaInicio = apiSuscripcion.FechaInicio ?? default(DateTime),
+                TipoSuscripcion = apiSuscripcion.TipoSuscripcion,
+                Estado = apiSuscripcion.Estado,
+                Activo = apiSuscripcion.Activo ?? false,
 
+            }).ToList();
 
+            return listaSuscripcionesIndex;
+        }
     }
 }

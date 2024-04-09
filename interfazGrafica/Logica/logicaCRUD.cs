@@ -46,6 +46,10 @@ namespace interfazGrafica.Logica
         {
             api.EliminarSuscripcion(id);
         }
+        public Suscripcione buscarSuscripcion(int id)
+        {
+            return api.ObtenerSuscripcionPorId(id);
+        }
         #endregion
         #region Sedes
         public void CrearSede(Models.Sedes sedeInsert)

@@ -35,7 +35,6 @@ namespace interfazGrafica.Models
                 TipoSuscripcion = this.TipoSuscripcion,
                 Estado = this.Estado,
                 Activo = this.Activo,
-                Cliente = this.Cliente.clienteAPI(),
             };
         }
 
