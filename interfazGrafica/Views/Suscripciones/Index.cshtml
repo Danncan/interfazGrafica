@@ -1,11 +1,13 @@
 ﻿@model PagedList.IPagedList<interfazGrafica.Models.SuscripcionesIndex>
-@using PagedList.Mvc; // Asegúrate de que PagedList.Mvc esté instalado y referenciado
+@using PagedList.Mvc; 
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Bienvenido a la Gestión de Suscripciones</h2>
+
+<link href="~/Sources/StylesPages.css" rel="stylesheet" />
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -74,7 +76,17 @@
     DisplayPageCountAndCurrentLocation = false,
     MaximumPageNumbersToDisplay = 5,
     DisplayEllipsesWhenNotShowingAllPageNumbers = true,
-    // ... y otros ajustes de estilo si los necesitas
-    UlElementClasses = new string[] { "pagination" }, // Clases de Bootstrap para la paginación
-    LiElementClasses = new string[] { "page-item" }, // Clases de Bootstrap para cada ítem de la paginación
+    EllipsesFormat = "&#8230;",
+    LinkToFirstPageFormat = "Primera",
+    LinkToPreviousPageFormat = "Anterior",
+    LinkToNextPageFormat = "Siguiente",
+    LinkToLastPageFormat = "Última",
+    PageCountAndCurrentLocationFormat = "Página {0} de {1}.",
+    ItemSliceAndTotalFormat = "Mostrando {0} a {1} de {2} entradas.",
+    FunctionToDisplayEachPageNumber = null,
+    ClassToApplyToFirstListItemInPager = null,
+    ClassToApplyToLastListItemInPager = null,
+    ContainerDivClasses = new[] { "pagination-container" },
+    UlElementClasses = new[] { "pagination" },
+    LiElementClasses = new[] { "page-item" },
 })

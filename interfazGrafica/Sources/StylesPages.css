@@ -1,0 +1,59 @@
+﻿.pagination-container {
+    text-align: center; /* Center the pagination on the page */
+    padding: 20px 0; /* Add some padding around the container */
+}
+
+.pagination {
+    display: inline-block; /* Place all pagination elements in line */
+    font-size: 1.1em; /* Slightly larger font size for better readability */
+    background: #f9f9f9; /* A subtle background for the pagination container */
+    border-radius: 10px; /* Rounded corners for the container */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Soft shadow for depth */
+    overflow: hidden; /* Ensures the child border-radius is respected */
+}
+
+.page-item {
+    display: inline-block; /* Change to inline-block for better spacing control */
+    margin: 0 5px; /* Space out the page items */
+    transition: transform 0.3s; /* Smooth transition for hover effects */
+}
+
+.page-link {
+    display: inline-block;
+    padding: 10px 15px; /* Increase padding for a larger clickable area */
+    margin: 0; /* Reset margin to allow for gradient spacing */
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%); /* Gradient background */
+    color: white; /* White text color for better contrast on gradient */
+    text-align: center;
+    border: none; /* Remove border */
+    border-radius: 20px; /* More pronounced rounded edges for a modern look */
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+    text-decoration: none; /* No underline on the links */
+    font-weight: 600; /* Bolder font for better visibility */
+}
+
+    .page-link:hover, .page-link:focus {
+        background-image: linear-gradient(to right, #2575fc 0%, #6a11cb 100%); /* Invert gradient on hover */
+        transform: translateY(-3px); /* More pronounced lift on hover */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Slight shadow on lift */
+    }
+
+/* Styles for the active item */
+.page-item.active .page-link {
+    background-image: linear-gradient(to right, #fc4a1a, #f7b733); /* Warm gradient for the active item */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25); /* Slight shadow to highlight the active page */
+}
+
+/* Styles for disabled item */
+.page-item.disabled .page-link {
+    color: #9da9b9; /* A muted color for disabled items */
+    background: #eceff1; /* A light background for disabled items */
+    pointer-events: none; /* Disables link functionality */
+    border: none; /* No border */
+}
+
+/* Additional hover effect for the page-item that is not disabled */
+.page-item:not(.disabled):hover .page-link {
+    transform: scale(1.05); /* Slight grow effect on hover */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* More pronounced shadow on hover */
+}

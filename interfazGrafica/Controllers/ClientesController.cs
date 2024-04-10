@@ -15,7 +15,6 @@ namespace interfazGrafica.Views.UIClientes
 {
     public class ClientesController : Controller
     {
-        private interfazGraficaContext db = new interfazGraficaContext();
         logicaCRUD logicaCRUD = new logicaCRUD();
         logicaConsultas logicaConsultas = new logicaConsultas();
 

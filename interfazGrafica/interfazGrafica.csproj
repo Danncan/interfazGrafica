@@ -185,6 +185,13 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Sources\img\background.jpg" />
+    <Content Include="Sources\img\favicon-16x16.png" />
+    <Content Include="Sources\img\fondo-servicios.jpg" />
+    <Content Include="Sources\img\fondo.jpg" />
+    <Content Include="Sources\img\nosotros.png" />
+    <Content Include="Sources\img\servicios.png" />
+    <Content Include="Sources\img\servicios_v2.png" />
     <Content Include="Sources\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -210,6 +217,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Sources\StylesPages.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

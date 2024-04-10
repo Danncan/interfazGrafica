@@ -11,8 +11,14 @@ namespace interfazGrafica.Models
         [Required]
         [Key]
         public int SedeID { get; set; }
+        [Required(ErrorMessage = "El nombre de la sede es obligatorio.")]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "El nombre de la sede debe tener entre 2 y 100 caracteres.")]
         public string NombreSede { get; set; }
+        [Required(ErrorMessage = "La dirección es obligatoria.")]
+        [StringLength(200, MinimumLength = 5, ErrorMessage = "La dirección debe tener entre 5 y 200 caracteres.")]
         public string Direccion { get; set; }
+        [Required(ErrorMessage = "El teléfono es obligatorio.")]
+        [Phone(ErrorMessage = "Ingresa un número de teléfono válido.")]
         public string Telefono { get; set; }
         public Nullable<bool> Activo { get; set; }
 

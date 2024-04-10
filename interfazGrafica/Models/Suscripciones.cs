@@ -14,8 +14,15 @@ namespace interfazGrafica.Models
         public int SuscripcionID { get; set; }
         public Nullable<int> ClienteID { get; set; }
         public Nullable<int> SedeID { get; set; }
+
+        [DataType(DataType.Date, ErrorMessage = "Formato de fecha no válido.")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> FechaInicio { get; set; }
+
+        [Required(ErrorMessage = "El tipo de suscripción es obligatorio.")]
+        [StringLength(50, ErrorMessage = "El tipo de suscripción debe tener menos de 50 caracteres.")]
         public string TipoSuscripcion { get; set; }
+
         public string Estado { get; set; }
         public Nullable<bool> Activo { get; set; }
 

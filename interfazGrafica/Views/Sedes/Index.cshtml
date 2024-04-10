@@ -1,11 +1,13 @@
 ﻿@model PagedList.IPagedList<interfazGrafica.Models.Sedes>
-@using PagedList.Mvc; // Incluye esto para usar los helpers de PagedList
+@using PagedList.Mvc; 
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Bienvenido a la Gestion de Sedes</h2>
+
+<link href="~/Sources/StylesPages.css" rel="stylesheet" />
 
 <p>
     @Html.ActionLink("Create New", "Create")
